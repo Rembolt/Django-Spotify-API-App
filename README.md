@@ -36,6 +36,7 @@ Download the folders from the repository.
 7. Open Spotify on you phone or PC(premium required), start the player
 8. Click the play button on this website and the songs should load on your play queue
 9. Enjoy!
+    
 ![Screenshot 2024-10-25 183835](https://github.com/user-attachments/assets/bf61ec14-6ff2-446e-aa14-5e5cc1f5e5db)
 ![Screenshot 2024-10-25 184234](https://github.com/user-attachments/assets/bc0c0ec5-90e2-4000-a0e3-906400017ed7)
 ![Screenshot 2024-10-25 184540](https://github.com/user-attachments/assets/bd2253ea-77e4-48ce-8a5f-87d6c616cff6)
