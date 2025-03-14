@@ -1,0 +1,84 @@
+{% extends 'shuffle/layout.html' %}
+{% load static %}
+
+{% block body %}
+    {% if not user.is_authenticated %}
+    <div class="login-wrapper">
+   
+        <form action="{% url 'shuffle:authorize' %}" method="get">
+            {% csrf_token %}
+            <input class="big button field" type="submit" value="Login with Spotify">
+        </form>
+            
+    </div>
+    
+    {% else %}
+
+        <form class="tooltip" action="{% url 'shuffle:playlist' %}" method="POST" id="link-area">
+            {% csrf_token %}
+            {{ link_form.link }}
+            {{ link_form.genreCheck }}
+            {{ link_form.similarityPercentage }}
+            {{ link_form.recentCheck }}
+            {{ link_form.recentPercentage }}
+            
+            <h4 class="tooltip" style="order:3; margin-right: 120px;">%
+                <span id="link-tooltip" class="tooltiptext">Probability from 0 to 100% click Genre dropdown for more info</span>
+            </h4>
+            <h4 class="tooltip" style="order:6; margin-right: 120px;">%
+                <span id="link-tooltip" class="tooltiptext">Probability from 0 to 100% click Recent dropdown for more info</span>
+            </h4>
+            <h4 class="tooltip" style="order:1">&nbsp;Genre&nbsp;&nbsp;
+                <span id="link-tooltip" class="tooltiptext">Select Genre sorting shuffle checkmark to use it. Probability from 0 to 100%. click Genre dropdown for more info.</span>
+            </h4>
+            <h4 class="tooltip" style="order:3">&nbsp;Recent&nbsp;
+                <span id="link-tooltip" class="tooltiptext">Select Recent sorting shuffle checkmark to use it. Probability from 0 to 100%. click Recent dropdown for more info.</span>
+            </h4>
+            <span id="link-tooltip" class="tooltiptext" style="bottom:-27px;">insert any playlist link and click send to get an actual good shuffle on it.</span>
+            <input type="submit" class="send button field" value="">
+        </form>
+       
+
+    
+
+    {% endif %}
+    
+    <div id="queue-wrapper" class="{% if not user.is_authenticated %} blur {% endif %}queue-wrapper">
+        {% for shuffle in shuffles %}
+            <div id="{{shuffle.title}}" class="queue-display">
+                <div id="titel-wrapper" class="queue-title">
+                    <div class="tooltip">
+                        <img id="{{shuffle.title}}"class="description drop-down small-image"src="{% static 'shuffle/images/arrow.webp' %}" alt="dropdown icon" >
+                        <span id="link-tooltip" class="tooltiptext">click for shuffle description</span>
+                    </div>
+                    <h4>{{shuffle.title}}</h4>
+                    <div class="tooltip">
+                        <form action="{% url 'shuffle:queue' shuffle.title %}" method="POST" id="play-button">
+                            {% csrf_token %}
+                            <input type="submit" class="send button field" value="">
+                        </form>
+                        <span id="link-tooltip" class="tooltiptext" style="left:-400%;">click to add songs to your spotify queue</span>
+                    </div>
+                </div>
+                <div id="{{shuffle.title}}-description" class="queue-description">{{shuffle.description}}</div>
+                <div id="queue-id" class="songs-list">
+                    {% if shuffle.songs %}
+                        {% for song in shuffle.songs %}
+                            <div id="song-id{{ song.id }}" class="song-display">
+                                <img id="song-cover"class="circular small-image" src="{{ song.album.images.2.url }}" alt="cover image of song album" >
+                                <div>
+                                    <h6 id="song-name">{{ song.name }}</h6>
+                                    <p id="song-artist">{% for artist in song.artists %}{{ artist.name }} .  {% endfor %}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <div id="placeholder-song" class="song-display">
+                            <h6 id="song-name">Insert a link above. The songs will appear here! Check off the Box of the types of Shuffle you would like performed on your playlist. Drag to the side to check the other shuffle types. If you have any questions hover over stuff!</h6> 
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,94 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link rel="icon" href="{% static 'shuffle/images/video-frame-poster.png' %}">
+    <link rel="stylesheet" href="{% static 'shuffle/styles.css' %}">
+    <script src="{% static 'shuffle/index.js' %}"></script>
+</head>
+<body>
+    {% if not user.is_authenticated %}
+        <div class="intro">
+            <h1 class="logo-header">
+                <img id="logo-shuffle" src="{% static 'shuffle/images/shuffle-icon.png' %}" alt="Shuffle icon" class="logo small-image">
+                <span id="logo-header" class="logo">POWER</span>
+                <span id="logo-under" class="logo">shuffle</span>
+            </h1>
+        </div>
+    {% endif %}
+    <div class="row">
+        <div id="user-id" class="tooltip user-display">
+            {% if user.is_authenticated %}
+                <img id="song-cover"class="user circular small-image"src="{{ user.profilePic }}" alt="cover image of song album" >
+                <div>   
+                    <p id="welcome" class="white">Welcome, </p>
+                    <h6 id="username">{{user.username}}</h6>         
+                </div>
+                <span id="username-tooltip" class="tooltiptext">spotify's username info and pic</span>       
+            {% endif %}
+        </div>
+
+        {% if not user.is_authenticated %}
+            <div id="about" style="margin-top:30px;">
+                <h5 style="color: white; font-weight: bolder; margin:3px;">Log in.</h5>  
+                <h5 style="color: white; font-weight: bolder; margin:3px;">Paste playlist link.</h5>
+                <h5 style="color: white; font-weight: bolder; margin:5px;">Use optimal shuffle algorithms.</h5>
+            </div>
+        {% endif %}
+
+        <div id="ghost" class="ghost">
+            {% if user.is_authenticated %}
+                <a href="{% url 'shuffle:signout' %}">logout</a>
+            {% endif %}    
+        </div>
+    </div>
+
+    <div id="about" class="tooltip">
+        <h5>{{message}}</h5>  
+        <span id="username-tooltip" class="tooltiptext" style="bottom:0px; left:40%">messages regarding the status of server will appear here</span>
+    </div>
+
+    <a href="https://www.spotify.com" target="_blank" class="spotify-logo">
+        <img src="{% static 'shuffle/images/full-spotify-logo.svg' %}" alt="Spotify icon">
+    </a>
+    <!-- <div class="nav-bar">
+
+       
+
+        {% if title == "home" %}<div id="current-page" class="tooltip menu">{% else %}<div class="tooltip menu">{% endif %}
+            <a href="{% url 'shuffle:index' %}">
+                <img id="home-icon"src="{% static 'shuffle/images/home-icon.png' %}" alt="Home icon" class="big-image">
+                <span id="home-tooltip" class="tooltiptext">home</span>
+            </a> 
+        </div>
+        {% if title == "shuffle" %}<div id="current-page" class="tooltip menu">{% else %}<div class="tooltip menu">{% endif %}
+            <a href="{% url 'shuffle:index' %}">
+                <img id="shuffle-icon" src="{% static 'shuffle/images/shuffle-icon.png' %}" alt="Shuffle icon" class="big-image">
+                <span id="home-tooltip" class="tooltiptext">POWER suffle</span>
+            </a> 
+        </div>
+        {% if title == "info" %}<div id="current-page" class="tooltip last menu">{% else %}<div class="tooltip  last menu">{% endif %}
+            <a href="{% url 'shuffle:index' %}">
+                <img id="info-icon"src="{% static 'shuffle/images/info-icon.png' %}" alt="Info icon" class="big-image">
+                <span id="home-tooltip" class="tooltiptext">info</span>
+            </a> 
+        </div>
+       
+    </div> -->
+
+</div>
+    <div class="body">
+        {% block body %}
+        {% endblock %}
+    </div>
+</body>
+<footer>
+    {% block footer %}
+    {% endblock %}
+</footer>
+</html>
