@@ -1,0 +1,4 @@
+Django==4.2.20
+python-decouple==3.8
+Requests==2.32.3
+psycopg2>=2.8.6,<2.9

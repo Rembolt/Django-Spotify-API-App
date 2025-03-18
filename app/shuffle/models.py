@@ -2,8 +2,10 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from datetime import datetime
 
-
 # Create your models here.
+
+class Sample(models.Model):
+    attachment = models.FileField()
 
 class User(AbstractUser):
     accessToken = models.TextField(blank=True)
