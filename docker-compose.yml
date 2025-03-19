@@ -13,8 +13,8 @@ services:
       - ./app:/app
       - ./data/web:/vol/web
     environment:
-      - SECRET_KEY=hm
-      - DEBUG=1
+      - SECRET_KEY=${SECRET_KEY}
+      - DEBUG=1j
       - DB_HOST=db
       - DB_NAME=devdb
       - DB_USER=devuser
