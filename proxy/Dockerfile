@@ -19,6 +19,10 @@ RUN mkdir -p /vol/static && \
 
 VOLUME /vol/static
 
+# Certbot SSL Volumes
+VOLUME /etc/letsencrypt
+VOLUME /var/lib/letsencrypt
+
 USER nginx
 
 CMD ["/run.sh"]

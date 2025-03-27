@@ -32,10 +32,26 @@ services:
     depends_on:
       - app
     ports:
-      - 80:8000
+      - "80:80"
+      - "443:443"
     volumes:
       - static-data:/vol/static
+      - certbot-etc:/etc/letsencrypt
+      - certbot-var:/var/lib/letsencrypt
+
+  certbot:
+    image: certbot/certbot
+    restart: always
+    volumes:
+      - certbot-etc:/etc/letsencrypt
+      - certbot-var:/var/lib/letsencrypt
+    entrypoint: >
+      sh -c "certbot certonly --webroot -w /vol/static --email your@email.com
+      --agree-tos --no-eff-email --staple-ocsp
+      --preferred-challenges http -d powershuffle.ianblanc.com"
 
 volumes:
   postgres-data:
   static-data:
+  certbot-etc:
+  certbot-var:
