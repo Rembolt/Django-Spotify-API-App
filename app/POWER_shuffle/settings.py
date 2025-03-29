@@ -104,6 +104,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # HTTPS set ups:
 
 CSRF_TRUSTED_ORIGINS = ["https://powershuffle.ianblanc.com"]
+SECURE_SSL_REDIRECT = False
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
