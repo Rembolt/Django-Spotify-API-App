@@ -1,5 +1,5 @@
-Django==4.2.20
+Django==4.0.5
+uWSGI==2.0.20
+psycopg2-binary
 python-decouple==3.8
 Requests==2.32.3
-psycopg2>=2.8.6,<2.9
-uWSGI>=2.0.19.1,<2.1
