@@ -39,6 +39,7 @@ services:
       - proxy
 
 volumes:
+  static_volume:
   certbot-web:
   proxy-dhparams:
   certbot-certs:
