@@ -14,4 +14,4 @@ RUN adduser --disabled-password --no-create-home django
 
 USER django
 
-CMD ["uwsgi", "--socket", ":9000", "--workers", "4", "--master", "--enable-threads", "--module", "app.wsgi"]
+CMD ["uwsgi", "--socket", ":9000", "--workers", "4", "--master", "--enable-threads", "--module", "POWER_shuffle.wsgi"]
