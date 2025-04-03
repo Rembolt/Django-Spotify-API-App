@@ -105,9 +105,12 @@ AUTH_PASSWORD_VALIDATORS = [
 # HTTPS set ups:
 
 CSRF_TRUSTED_ORIGINS = ["https://powershuffle.ianblanc.com"]
-SECURE_SSL_REDIRECT = False
+SECURE_SSL_REDIRECT = True
 USE_X_FORWARDED_HOST = True
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
