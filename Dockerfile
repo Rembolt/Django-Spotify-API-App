@@ -10,10 +10,12 @@ RUN apk add --upgrade --no-cache build-base linux-headers && \
 COPY app/ /app
 WORKDIR /app
 
-RUN adduser --disabled-password --no-create-home django
-RUN mkdir -p /vol/static && chown -R django:django /vol/static
-RUN python manage.py collectstatic --noinput
+RUN adduser --disabled-password --no-create-home django && \
+    mkdir -p /vol/static && \
+    chown -R django:django /vol && \
+    chmod -R 755 /vol
 
 USER django
+RUN python manage.py collectstatic --noinput
 
 CMD ["uwsgi", "--socket", ":9000", "--workers", "4", "--master", "--enable-threads", "--module", "POWER_shuffle.wsgi"]
