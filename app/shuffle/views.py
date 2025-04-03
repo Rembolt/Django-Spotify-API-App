@@ -80,7 +80,7 @@ def authorize(request):
         url= 'https://accounts.spotify.com/api/token'
         params= {
             'code': code,
-            'redirect_uri': request.build_absolute_uri(reverse('shuffle:authorize')),
+            'redirect_uri': request.build_absolute_uri(reverse('shuffle:authorize')).replace("http://", "https://"),
             'grant_type': 'authorization_code'
         }
         headers={
@@ -98,7 +98,7 @@ def authorize(request):
         'response_type':'code',
         'client_id': client_id,
         'scope': 'user-read-private user-read-email user-library-read user-read-recently-played user-top-read playlist-read-collaborative playlist-read-private user-read-currently-playing user-modify-playback-state user-read-playback-state',
-        'redirect_uri': request.build_absolute_uri(reverse('shuffle:authorize')),
+        'redirect_uri': request.build_absolute_uri(reverse('shuffle:authorize')).replace("http://", "https://"),
         'state': ''.join(random.choice('0123456789ABCDEF') for i in range(16)),
         'show_dialog': 'true',
         }
