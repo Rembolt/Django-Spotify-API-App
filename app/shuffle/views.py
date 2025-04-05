@@ -37,6 +37,7 @@ shuffles =[
 ]
 # Handle the index page rendering, check if the user is authenticated, and render appropriate content
 def index(request, shuffles = shuffles, message = ''):
+    print(request.build_absolute_uri(reverse('shuffle:authorize')))
     if request.user.is_authenticated:
         if len(shuffles) >= 1:
             return render(request, "shuffle/index.html",{
