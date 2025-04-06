@@ -37,7 +37,7 @@ shuffles =[
 ]
 # Handle the index page rendering, check if the user is authenticated, and render appropriate content
 def index(request, shuffles = shuffles, message = ''):
-    print(request.build_absolute_uri(reverse('shuffle:authorize')))
+    print(request.build_absolute_uri(reverse('shuffle:authorize')).replace("http://", "https://"))
     if request.user.is_authenticated:
         if len(shuffles) >= 1:
             return render(request, "shuffle/index.html",{
@@ -91,6 +91,7 @@ def authorize(request):
 
         response = apiHandler.post(request,url,params,headers)
         print("signed up")
+        print("response: ", response)
         return appHandler.signup(request, response)
     else:
        # Redirect user to Spotify's authorization page if code is not present
