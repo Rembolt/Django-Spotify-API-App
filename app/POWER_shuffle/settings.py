@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', "setmeinprod")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(int(os.environ.get("DJANGO_DEBUG", 0)))
+DEBUG = bool(int(os.environ.get("DJANGO_DEBUG", 1)))
 
 DJANGO_ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "localhost")
 ALLOWED_HOSTS = [] if DEBUG else DJANGO_ALLOWED_HOSTS.split(',')
@@ -130,3 +130,8 @@ USE_TZ = True
 STATIC_URL = "/static/"
 STATIC_ROOT = "/vol/static"  # Where static files will be collected
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+# Default primary key field type
+# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
