@@ -27,10 +27,6 @@ server {
     location / {
         uwsgi_pass           ${APP_HOST}:${APP_PORT};
         include              /etc/nginx/uwsgi_params;
-        uwsgi_param        X-Real-IP        $remote_addr;
-        uwsgi_param        X-Forwarded-For  $proxy_add_x_forwarded_for;
-        uwsgi_param        X-Forwarded-Proto $scheme;
-        uwsgi_param        Host             $host;
         client_max_body_size 10M;
     }
 }
