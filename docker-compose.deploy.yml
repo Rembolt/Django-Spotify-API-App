@@ -1,6 +1,16 @@
 
 
 services:
+  db:
+    image: postgres:13-alpine
+    restart: always
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    
   app:
     build:
       context: .
@@ -8,7 +18,13 @@ services:
     environment:
       - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
       - DJANGO_ALLOWED_HOSTS=${DOMAIN}
-
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_HOST=db
+    depends_on:
+      - db
+    
   proxy:
     build:
       context: ./docker/proxy
@@ -39,6 +55,7 @@ services:
       - proxy
 
 volumes:
+  postgres_data:
   certbot-web:
   proxy-dhparams:
   certbot-certs:
