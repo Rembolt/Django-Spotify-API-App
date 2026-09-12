@@ -1,6 +1,7 @@
 # Django-Spotify-API-App
 # 🎵 Power Shuffle Music Player 🎵
 **Ran the app in production for 1+ year before retiring hosting in 2025 due to AWS's shift to a credit-based free tier and Spotify's tightened API terms**
+
 A fully customizable music player built to extend Spotify’s shuffle feature, adding new algorithmic and user-driven options for a tailored listening experience. With Power Shuffle Music Player, users can personalize their music queue to match their mood, genres, and preferences—all integrated with the Spotify API. 
 ![Screenshot 2024-10-25 183707](https://github.com/user-attachments/assets/ad787dd4-f5f3-4ffd-b05a-907ce6f69ae5)
 ![Screenshot 2025-04-09 140607](https://github.com/user-attachments/assets/af9083f8-90c3-45b4-bddc-c4beecf99432)
